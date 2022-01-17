@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   walking.c                                          :+:    :+:            */
+/*   start.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/13 16:31:45 by qfrederi      #+#    #+#                 */
-/*   Updated: 2021/12/16 17:08:23 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/01/17 13:49:05 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,83 +30,23 @@ int	key_hook(int keycode, t_vars *vars)
 		vars->hero_y = vars->start_y;
 		
 	}
-	mlx_string_put(vars->mlx, vars->mlx_win, 0, 64, 0xffffff, &vars->move_screen);
+	mlx_string_put(vars->mlx, vars->mlx_win, 0, 64, 0xffffff, ft_itoa(vars->movement));
 	printf("Keypress: %d\n", keycode);
 	if (keycode == 0)
 	{
-		mlx_clear_window(vars->mlx, vars->mlx_win);
-		readmap(vars);
-		x = x - 64;
-		vars->hero_x = x;
-		if (checkwall(vars) == 1)
-		{
-			x = x + 64;
-			vars->hero_x = x;
-			mlx_string_put(vars->mlx, vars->mlx_win, vars->screen_x - 64, 64, 0xffffff, &vars->move_screen);
-		}
-		else
-		{
-			display_move(vars);
-			mlx_string_put(vars->mlx, vars->mlx_win, vars->screen_x - 64, 64, 0xffffff, &vars->move_screen);
-		}
-		mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->img, x, y);
+		move_left(&x, &y, vars);
 	}
 	if (keycode == 1)
 	{
-		mlx_clear_window(vars->mlx, vars->mlx_win);
-		readmap(vars);
-		y = y + 64;
-		vars->hero_y = y;
-		if (checkwall(vars) == 1)
-		{
-			y = y - 64;
-			vars->hero_y = y;
-			mlx_string_put(vars->mlx, vars->mlx_win, vars->screen_x - 64, 64, 0xffffff, &vars->move_screen);
-		}
-		else
-		{
-			display_move(vars);
-			mlx_string_put(vars->mlx, vars->mlx_win, vars->screen_x - 64, 64, 0xffffff, &vars->move_screen);
-		}
-		mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->img, x, y);
+		move_down(&x, &y, vars);
 	}
 	if (keycode == 2)
 	{
-		mlx_clear_window(vars->mlx, vars->mlx_win);
-		readmap(vars);
-		x = x + 64;
-		vars->hero_x = x;
-		if (checkwall(vars) == 1)
-		{
-			x = x - 64;
-			vars->hero_x = x;
-			mlx_string_put(vars->mlx, vars->mlx_win, vars->screen_x - 64, 64, 0xffffff, &vars->move_screen);
-		}
-		else
-		{
-			display_move(vars);
-			mlx_string_put(vars->mlx, vars->mlx_win, vars->screen_x - 64, 64, 0xffffff, &vars->move_screen);
-		}
-		mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->img, x, y);
+		move_right(&x, &y, vars);
 	}
 	if (keycode == 13)
 	{
-		mlx_clear_window(vars->mlx, vars->mlx_win);
-		readmap(vars);
-		y = y - 64;
-		vars->hero_y = y;
-		if (checkwall(vars) == 1)
-		{
-			y = y + 64;
-			vars->hero_y = y;
-			mlx_string_put(vars->mlx, vars->mlx_win, vars->screen_x - 64, 64, 0xffffff, &vars->move_screen);
-		}
-		else
-		{
-			display_move(vars);
-			mlx_string_put(vars->mlx, vars->mlx_win, vars->screen_x - 64, 64, 0xffffff, &vars->move_screen);
-		}
-		mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->img, x, y);
+		move_up(&x, &y, vars);
 	}
 	if (x == vars->exit_x && y == vars->exit_y && vars->count_collect == 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/16 12:20:08 by qfrederi      #+#    #+#                 */
-/*   Updated: 2021/12/16 17:04:21 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/01/17 14:04:50 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int	checkwall(t_vars *vars)
 		{
 			if (vars->mapline[f][i] == '1')
 			{
-				if (vars->wall_x == vars->hero_x && vars->wall_y == vars->hero_y)
+				if (vars->wall_x == vars->hero_x && \
+				vars->wall_y == vars->hero_y)
 				{
 					return (1);
 				}
@@ -74,6 +75,7 @@ int	check_collect(t_vars *vars)
 	int	f;
 	int	i;
 	int	count;
+
 	i = 0;
 	f = 0;
 	vars->count_collect = 0;

@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/13 16:44:37 by qfrederi      #+#    #+#                 */
-/*   Updated: 2021/12/16 17:04:11 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/01/17 14:01:18 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,9 @@ int		checkwall(t_vars *vars);
 int		check_collect(t_vars *vars);
 int		pickup_collect(t_vars *vars);
 int		display_move(t_vars *vars);
+void	move_left(int *x, int *y, t_vars *vars);
+void	move_down(int *x, int *y, t_vars *vars);
+void	move_right(int *x, int *y, t_vars *vars);
+void	move_up(int *x, int *y, t_vars *vars);
 
 #endif
