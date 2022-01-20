@@ -6,13 +6,14 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/13 17:07:22 by qfrederi      #+#    #+#                 */
-/*   Updated: 2021/12/16 12:52:51 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/01/20 15:45:21 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line/get_next_line.h"
 #include "../includes/so_long.h"
 #include "../library/libft/libft.h"
+#include <stdio.h>
 #include <mlx.h>
 
 void	*mapinput(t_vars *vars)
@@ -51,67 +52,30 @@ int	count_line(t_vars *vars)
 	return (count);
 }
 
-void	readmap(t_vars *vars)
+void	put_map(t_vars *vars)
 {
-	int	f;
-	int	i;
 	int	x;
 	int	y;
-	int	count;
 
 	x = 0;
 	y = 0;
-	i = 0;
-	f = 0;
-	count = count_line(vars);
-	while (f < count)
+	vars->i_map = 0;
+	vars->f_map = 0;
+	while (vars->f_map < count_line(vars))
 	{
-		while (vars->mapline[f][i] != '\0')
+		while (vars->mapline[vars->f_map][vars->i_map] != '\0')
 		{
-			if (vars->mapline[f][i] == '1')
-			{
-				mlx_put_image_to_window(vars->mlx, vars->mlx_win, \
-				vars->Wallimg, x, y);
-			}
-			if (vars->mapline[f][i] == '0')
-			{
-				mlx_put_image_to_window(vars->mlx, vars->mlx_win, \
-				vars->background_img, x, y);
-			}
-			if (vars->mapline[f][i] == 'C')
-			{
-				mlx_put_image_to_window(vars->mlx, vars->mlx_win, \
-				vars->collect, x, y);
-				if (vars->hero_x == x && vars->hero_y == y)
-				{
-					vars->mapline[f][i] = '0';
-					mlx_put_image_to_window(vars->mlx, vars->mlx_win, \
-					vars->background_img, x, y);
-					pickup_collect(vars);
-					check_collect(vars);
-				}
-			}
-			if (vars->mapline[f][i] == 'P')
-			{
-				vars->start_x = x;
-				vars->start_y = y;
-				mlx_put_image_to_window(vars->mlx, vars->mlx_win, \
-				vars->img, x, y);
-				vars->mapline[f][i] = '0';
-			}
-			if (vars->mapline[f][i] == 'E')
-			{
-				mlx_put_image_to_window(vars->mlx, vars->mlx_win, \
-				vars->exit, x, y);
-				vars->exit_x = x;
-				vars->exit_y = y;
-			}
+			write_wall(vars, &x, &y);
+			write_empty(vars, &x, &y);
+			write_collect(vars, &x, &y);
+			write_player(vars, &x, &y);
+			write_exit(vars, &x, &y);
 			x = x + 64;
-			i++;
+			vars->i_map++;
 		}
-		i = 0;
+		vars->i_map = 0;
 		x = 0;
 		y = y + 64;
-		f++;
+		vars->f_map++;
 	}
 }

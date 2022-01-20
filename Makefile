@@ -6,13 +6,16 @@ MLX_LIB = $(MLX_DIR)/libmlx.dylib
 FLAGS =
 LFLAGS = -framework OpenGL -framework AppKit
 INC = -I ./includes
-SRC =   ./src/start.c \
-		./src/get_next_line/get_next_line.c \
+SRC =   ./src/get_next_line/get_next_line.c \
 		./src/get_next_line/get_next_line_utils.c \
+		./src/start.c \
 		./src/use_map.c \
+		./src/error_map.c \
 		./src/check_map.c \
+		./src/write_map.c \
+		./src/directions.c \
 		./src/display_info.c \
-		./src/directions.c 
+		./src/exit_game.c
 OBJ = $(SRC:%.c=%.o)
 
 all: $(NAME)

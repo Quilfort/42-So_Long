@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 13:10:40 by qfrederi          #+#    #+#             */
-/*   Updated: 2022/01/17 14:01:27 by qfrederi         ###   ########.fr       */
+/*   Updated: 2022/01/20 15:53:17 by qfrederi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 
 void	move_left(int *x, int *y, t_vars *vars)
 {
-	mlx_clear_window(vars->mlx, vars->mlx_win);
-	readmap(vars);
+	put_map(vars);
 	*x = *x - 64;
 	vars->hero_x = *x;
 	if (checkwall(vars) == 1)
@@ -41,8 +40,7 @@ void	move_left(int *x, int *y, t_vars *vars)
 
 void	move_down(int *x, int *y, t_vars *vars)
 {
-	mlx_clear_window(vars->mlx, vars->mlx_win);
-	readmap(vars);
+	put_map(vars);
 	*y = *y + 64;
 	vars->hero_y = *y;
 	if (checkwall(vars) == 1)
@@ -63,8 +61,7 @@ void	move_down(int *x, int *y, t_vars *vars)
 
 void	move_right(int *x, int *y, t_vars *vars)
 {
-	mlx_clear_window(vars->mlx, vars->mlx_win);
-	readmap(vars);
+	put_map(vars);
 	*x = *x + 64;
 	vars->hero_x = *x;
 	if (checkwall(vars) == 1)
@@ -85,8 +82,7 @@ void	move_right(int *x, int *y, t_vars *vars)
 
 void	move_up(int *x, int *y, t_vars *vars)
 {
-	mlx_clear_window(vars->mlx, vars->mlx_win);
-	readmap(vars);
+	put_map(vars);
 	*y = *y - 64;
 	vars->hero_y = *y;
 	if (checkwall(vars) == 1)

@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/16 12:20:08 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/01/17 14:04:50 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/01/20 16:09:34 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,12 @@ int	checkwall(t_vars *vars)
 {
 	int	f;
 	int	i;
-	int	count;
 
 	vars->wall_x = 0;
 	vars->wall_y = 0;
 	i = 0;
 	f = 0;
-	count = count_line(vars);
-	while (f < count)
+	while (f < count_line(vars))
 	{
 		while (vars->mapline[f][i] != '\0')
 		{
@@ -56,9 +54,7 @@ int	checkwall(t_vars *vars)
 			{
 				if (vars->wall_x == vars->hero_x && \
 				vars->wall_y == vars->hero_y)
-				{
 					return (1);
-				}
 			}	
 			vars->wall_x = vars->wall_x + 64;
 			i++;
