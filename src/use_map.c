@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/13 17:07:22 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/01/20 15:45:21 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/01/24 16:20:46 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,40 +16,50 @@
 #include <stdio.h>
 #include <mlx.h>
 
-void	*mapinput(t_vars *vars)
+void	*mapinput(t_vars *vars, char *argv[])
 {
 	int		fd;
 	char	*temp;
+	char	*map;
+	char	*newmap;
 
-	vars->map = malloc(sizeof(char) * 1);
-	vars->map = "\0";
-	fd = open("./maps/map1.ber", O_RDONLY);
-	temp = get_next_line(fd);
-	while (temp != 0)
+	map = ft_calloc(1, 1);
+	if (map == NULL)
+		return (NULL);
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		return (0);
+	while (map)
 	{
-		vars->map = ft_strjoin(vars->map, temp);
 		temp = get_next_line(fd);
+		if (!temp)
+			break ;
+		newmap = map;
+		map = ft_strjoin(newmap, temp);
+		free(newmap);
+		free(temp);
 	}
-	vars->mapline = ft_split(vars->map, '\n');
+	vars->count = count_line(vars, map);
+	vars->mapline = ft_split(map, '\n');
+	free(map);
 	close(fd);
 }
 
-int	count_line(t_vars *vars)
+int	count_line(t_vars *vars, char *map)
 {
 	int	i;
-	int	count;
 
-	count = 1;
+	vars->count = 1;
 	i = 0;
-	while (vars->map[i] != '\0')
+	while (map[i] != '\0')
 	{
-		if (vars->map[i] == '\n')
+		if (map[i] == '\n')
 		{
-			count++;
+			vars->count++;
 		}
 		i++;
 	}
-	return (count);
+	return (vars->count);
 }
 
 void	put_map(t_vars *vars)
@@ -61,7 +71,7 @@ void	put_map(t_vars *vars)
 	y = 0;
 	vars->i_map = 0;
 	vars->f_map = 0;
-	while (vars->f_map < count_line(vars))
+	while (vars->f_map < vars->count)
 	{
 		while (vars->mapline[vars->f_map][vars->i_map] != '\0')
 		{
@@ -70,12 +80,12 @@ void	put_map(t_vars *vars)
 			write_collect(vars, &x, &y);
 			write_player(vars, &x, &y);
 			write_exit(vars, &x, &y);
-			x = x + 64;
+			x = x + 63;
 			vars->i_map++;
 		}
 		vars->i_map = 0;
 		x = 0;
-		y = y + 64;
+		y = y + 63;
 		vars->f_map++;
 	}
 }

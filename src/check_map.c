@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/16 12:20:08 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/01/20 16:09:34 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/01/24 16:22:36 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,20 @@ void	checkmap(t_vars *vars)
 {
 	int	f;
 	int	i;
-	int	count;
 
 	f = 0;
 	i = 0;
-	count = count_line(vars);
-	while (f < count)
+	while (f < vars->count)
 	{
 		while (vars->mapline[f][i] != '\0')
 		{
 			i++;
 		}
-		vars->screen_x = i * 64;
+		vars->screen_x = i * 63;
 		i = 0;
 		f++;
 	}
-	vars->screen_y = f * 64;
+	vars->screen_y = f * 63;
 }
 
 int	checkwall(t_vars *vars)
@@ -46,7 +44,7 @@ int	checkwall(t_vars *vars)
 	vars->wall_y = 0;
 	i = 0;
 	f = 0;
-	while (f < count_line(vars))
+	while (f < vars->count)
 	{
 		while (vars->mapline[f][i] != '\0')
 		{
@@ -56,12 +54,12 @@ int	checkwall(t_vars *vars)
 				vars->wall_y == vars->hero_y)
 					return (1);
 			}	
-			vars->wall_x = vars->wall_x + 64;
+			vars->wall_x = vars->wall_x + 63;
 			i++;
 		}
 		i = 0;
 		vars->wall_x = 0;
-		vars->wall_y = vars->wall_y + 64;
+		vars->wall_y = vars->wall_y + 63;
 		f++;
 	}
 }
@@ -70,13 +68,11 @@ int	check_collect(t_vars *vars)
 {
 	int	f;
 	int	i;
-	int	count;
 
 	i = 0;
 	f = 0;
 	vars->count_collect = 0;
-	count = count_line(vars);
-	while (f < count)
+	while (f < vars->count)
 	{
 		while (vars->mapline[f][i] != '\0')
 		{
@@ -89,5 +85,5 @@ int	check_collect(t_vars *vars)
 		i = 0;
 		f++;
 	}
-	printf("de is de count %d", vars->count_collect);
+	return (0);
 }

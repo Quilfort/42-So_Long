@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/19 13:59:48 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/01/20 16:10:09 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/01/24 13:49:06 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	unknown_error(t_vars *vars)
 
 	f = 0;
 	i = 0;
-	while (f < count_line(vars))
+	while (f < vars->count)
 	{
 		while (vars->mapline[f][i] != '\0')
 		{
@@ -55,7 +55,7 @@ void	item_error(t_vars *vars)
 	vars->c = 0;
 	vars->p = 0;
 	vars->e = 0;
-	while (f < count_line(vars))
+	while (f < vars->count)
 	{
 		while (vars->mapline[f][i] != '\0')
 		{
@@ -78,20 +78,18 @@ void	wall_error(t_vars *vars)
 {
 	int	f;
 	int	i;
-	int	count;
 	int	max;
 
 	f = 0;
 	i = 0;
 	max = ft_strlen(vars->mapline[i]);
-	count = count_line(vars);
-	while (f < count_line(vars))
+	while (f < vars->count)
 	{
 		while (vars->mapline[f][i] != '\0')
 		{
 			if (vars->mapline[0][i] != '1' || vars->mapline[f][0] != '1' || \
 			vars->mapline[f][max - 1] != '1' || \
-			vars->mapline[count - 1][i] != '1')
+			vars->mapline[vars->count - 1][i] != '1')
 				print_error(vars);
 			i++;
 		}

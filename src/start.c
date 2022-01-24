@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/13 16:31:45 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/01/20 16:54:55 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/01/24 16:18:22 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ int	key_hook(int keycode, t_vars *vars)
 		vars->hero_x = vars->start_x;
 		vars->hero_y = vars->start_y;
 	}
-	mlx_string_put(vars->mlx, vars->mlx_win, 0, 64, 0xffffff, \
+	mlx_string_put(vars->mlx, vars->mlx_win, 0, 63, 0xffffff, \
 	ft_itoa(vars->movement));
-	printf("Keypress: %d\n", keycode);
 	if (keycode == 0)
 		move_left(&x, &y, vars);
 	if (keycode == 1)
@@ -42,33 +41,41 @@ int	key_hook(int keycode, t_vars *vars)
 		move_up(&x, &y, vars);
 	winscreen(&x, &y, vars);
 	key_hook_exit(keycode, vars);
+	return (0);
 }
 
 void	load_images(t_vars *vars)
 {
 	vars->img = mlx_xpm_file_to_image(vars->mlx, vars->relative_path, \
 	&vars->img_width, &vars->img_height);
-	vars->background_img = mlx_xpm_file_to_image(vars->mlx, vars->background_path, \
-	&vars->img_width, &vars->img_height);
+	vars->background_img = mlx_xpm_file_to_image(vars->mlx, \
+	vars->grass_path, &vars->img_width, &vars->img_height);
 	vars->wallimg = mlx_xpm_file_to_image(vars->mlx, vars->wall_path, \
 	&vars->img_width, &vars->img_height);
 	vars->collect = mlx_xpm_file_to_image(vars->mlx, vars->collect, \
 	&vars->img_width, &vars->img_height);
 	vars->exit = mlx_xpm_file_to_image(vars->mlx, vars->exit, \
 	&vars->img_width, &vars->img_height);
+	vars->win_img = mlx_xpm_file_to_image(vars->mlx, vars->winscreen_path, \
+	&vars->img_width, &vars->img_height);
 }
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	t_vars	vars;
 
-	vars.background_path = "./Grass.xpm";
+	if (argc != 2)
+	{
+		return (0);
+	}
+	vars.grass_path = "./Grass.xpm";
 	vars.relative_path = "./Character.xpm";
 	vars.wall_path = "./Wall.xpm";
 	vars.collect = "./collect.xpm";
 	vars.exit = "./exit.xpm";
+	vars.winscreen_path = "./background.xpm";
 	vars.mlx = mlx_init();
-	mapinput(&vars);
+	mapinput(&vars, argv);
 	map_error(&vars);
 	checkmap(&vars);
 	vars.mlx_win = mlx_new_window(vars.mlx, vars.screen_x, \

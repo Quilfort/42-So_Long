@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/20 16:17:13 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/01/20 16:49:20 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/01/24 16:47:56 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@ void	winscreen(int *x, int *y, t_vars *vars)
 	if (*x == vars->exit_x && *y == vars->exit_y && vars->count_collect == 0)
 	{
 		mlx_destroy_window(vars->mlx, vars->mlx_win);
-		vars->win = "./background.xpm";
-		vars->mlx_win = mlx_new_window(vars->mlx, vars->screen_x, \
-		vars->screen_y, "You Won");
-		vars->win_img = mlx_xpm_file_to_image(vars->mlx, vars->win, \
-		&vars->img_width, &vars->img_height);
+		vars->mlx_win = mlx_new_window(vars->mlx, 192, \
+		192, "You Won");
+		mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->win_img, 0, 0);
 		mlx_hook(vars->mlx_win, 17, 0, close_game, &vars);
 		mlx_key_hook(vars->mlx_win, key_hook_exit, vars);
 	}	
@@ -45,4 +43,5 @@ int	key_hook_exit(int keycode, t_vars *vars)
 		mlx_destroy_window(vars->mlx, vars->mlx_win);
 		exit(0);
 	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/16 14:44:10 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/01/19 14:34:07 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/01/24 11:19:06 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,4 @@ void	pickup_collect(t_vars *vars)
 
 	count = count + 1;
 	vars->pickup_collect = count;
-	printf("de is de pickupcount %d", vars->pickup_collect);
 }
