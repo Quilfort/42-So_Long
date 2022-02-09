@@ -6,13 +6,12 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/16 12:20:08 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/01/24 16:22:36 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/09 17:08:14 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 #include "../library/libft/libft.h"
-#include <stdio.h>
 #include <mlx.h>
 
 void	checkmap(t_vars *vars)
@@ -50,8 +49,7 @@ int	checkwall(t_vars *vars)
 		{
 			if (vars->mapline[f][i] == '1')
 			{
-				if (vars->wall_x == vars->hero_x && \
-				vars->wall_y == vars->hero_y)
+				if (find_wall(vars) == 1)
 					return (1);
 			}	
 			vars->wall_x = vars->wall_x + 63;
@@ -62,6 +60,15 @@ int	checkwall(t_vars *vars)
 		vars->wall_y = vars->wall_y + 63;
 		f++;
 	}
+	return (0);
+}
+
+int	find_wall(t_vars *vars)
+{
+	if (vars->wall_x == vars->hero_x && vars->wall_y == vars->hero_y)
+		return (1);
+	else
+		return (0);
 }
 
 int	check_collect(t_vars *vars)

@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/17 13:10:40 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/01/24 11:17:01 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/07 13:37:02 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,12 @@ void	move_left(int *x, int *y, t_vars *vars)
 	{
 		*x = *x + 63;
 		vars->hero_x = *x;
-		mlx_string_put(vars->mlx, vars->mlx_win, vars->screen_x - 63, 63, \
-		0xffffff, ft_itoa(vars->movement));
+		print_screen(vars);
 	}
 	else
 	{
 		display_move(vars);
-		mlx_string_put(vars->mlx, vars->mlx_win, vars->screen_x - 63, 63, \
-		0xffffff, ft_itoa(vars->movement));
+		print_screen(vars);
 	}
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->img, *x, *y);
 }
@@ -47,14 +45,12 @@ void	move_down(int *x, int *y, t_vars *vars)
 	{
 		*y = *y - 63;
 		vars->hero_y = *y;
-		mlx_string_put(vars->mlx, vars->mlx_win, vars->screen_x - 63, 63, \
-		0xffffff, ft_itoa(vars->movement));
+		print_screen(vars);
 	}
 	else
 	{
 		display_move(vars);
-		mlx_string_put(vars->mlx, vars->mlx_win, vars->screen_x - 63, 63, \
-		0xffffff, ft_itoa(vars->movement));
+		print_screen(vars);
 	}
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->img, *x, *y);
 }
@@ -68,14 +64,12 @@ void	move_right(int *x, int *y, t_vars *vars)
 	{
 		*x = *x - 63;
 		vars->hero_x = *x;
-		mlx_string_put(vars->mlx, vars->mlx_win, vars->screen_x - 63, 63, \
-		0xffffff, ft_itoa(vars->movement));
+		print_screen(vars);
 	}
 	else
 	{
 		display_move(vars);
-		mlx_string_put(vars->mlx, vars->mlx_win, vars->screen_x - 63, 63, \
-		0xffffff, ft_itoa(vars->movement));
+		print_screen(vars);
 	}
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->img, *x, *y);
 }
@@ -89,14 +83,12 @@ void	move_up(int *x, int *y, t_vars *vars)
 	{
 		*y = *y + 63;
 		vars->hero_y = *y;
-		mlx_string_put(vars->mlx, vars->mlx_win, vars->screen_x - 63, 63, \
-		0xffffff, ft_itoa(vars->movement));
+		print_screen(vars);
 	}
 	else
 	{
 		display_move(vars);
-		mlx_string_put(vars->mlx, vars->mlx_win, vars->screen_x - 63, 63, \
-		0xffffff, ft_itoa(vars->movement));
+		print_screen(vars);
 	}
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->img, *x, *y);
 }

@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/19 13:59:48 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/01/24 13:49:06 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/09 14:34:41 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	print_error(t_vars *vars)
 {
 	char	*error;
 
-	error = "ERROR";
+	error = "Code 42: Map Error";
 	ft_putstr_fd(error, 1);
 	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/13 17:07:22 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/01/24 16:20:46 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/09 18:22:13 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void	*mapinput(t_vars *vars, char *argv[])
 	if (map == NULL)
 		return (NULL);
 	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		return (0);
+	fd_check(fd);
 	while (map)
 	{
 		temp = get_next_line(fd);
@@ -43,6 +42,18 @@ void	*mapinput(t_vars *vars, char *argv[])
 	vars->mapline = ft_split(map, '\n');
 	free(map);
 	close(fd);
+	return (0);
+}
+
+int	fd_check(int fd)
+{
+	if (fd == -1)
+	{
+		ft_putendl_fd("Map is empty", 1);
+		return (0);
+	}
+	else
+		return (1);
 }
 
 int	count_line(t_vars *vars, char *map)

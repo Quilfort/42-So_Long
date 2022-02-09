@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/13 16:44:37 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/01/24 16:27:05 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/09 17:25:00 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,9 @@ typedef struct s_vars {
 	void	*collect;
 	void	*exit;
 	void	*win;
-	char	*wall_path;
 	char	**mapline;
 	void	*background_img;
 	void	*win_img;
-	char	*relative_path;
-	char	*grass_path;
-	char	*winscreen_path;
 	char	move_screen;
 	int		hero_x;
 	int		hero_y;
@@ -54,6 +50,7 @@ typedef struct s_vars {
 
 void	load_images(t_vars *vars);
 void	*mapinput(t_vars *vars, char *argv[]);
+int		fd_check(int fd);
 void	put_map(t_vars *vars);
 int		count_line(t_vars *vars, char *map);
 void	write_wall(t_vars *vars, int *x, int *y);
@@ -73,9 +70,11 @@ void	move_down(int *x, int *y, t_vars *vars);
 void	move_right(int *x, int *y, t_vars *vars);
 void	move_up(int *x, int *y, t_vars *vars);
 int		checkwall(t_vars *vars);
+int		find_wall(t_vars *vars);
 int		check_collect(t_vars *vars);
 void	pickup_collect(t_vars *vars);
 void	display_move(t_vars *vars);
+void	print_screen(t_vars *vars);
 int		close_game(t_vars *vars);
 void	winscreen(int *x, int *y, t_vars *vars);
 int		key_hook_exit(int keycode, t_vars *vars);

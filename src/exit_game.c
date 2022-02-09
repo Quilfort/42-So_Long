@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/20 16:17:13 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/01/24 16:47:56 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/07 11:18:01 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	winscreen(int *x, int *y, t_vars *vars)
 int	close_game(t_vars *vars)
 {
 	mlx_destroy_window(vars->mlx, vars->mlx_win);
+	system("leaks so_long");
 	exit(0);
 }
 
@@ -41,6 +42,7 @@ int	key_hook_exit(int keycode, t_vars *vars)
 	if (keycode == 53)
 	{
 		mlx_destroy_window(vars->mlx, vars->mlx_win);
+		system("leaks so_long");
 		exit(0);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/13 16:31:45 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/01/24 16:18:22 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/09 15:22:16 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ int	key_hook(int keycode, t_vars *vars)
 		vars->hero_x = vars->start_x;
 		vars->hero_y = vars->start_y;
 	}
-	mlx_string_put(vars->mlx, vars->mlx_win, 0, 63, 0xffffff, \
-	ft_itoa(vars->movement));
 	if (keycode == 0)
 		move_left(&x, &y, vars);
 	if (keycode == 1)
@@ -46,34 +44,34 @@ int	key_hook(int keycode, t_vars *vars)
 
 void	load_images(t_vars *vars)
 {
-	vars->img = mlx_xpm_file_to_image(vars->mlx, vars->relative_path, \
+	vars->img = mlx_xpm_file_to_image(vars->mlx, "./Character.xpm", \
 	&vars->img_width, &vars->img_height);
 	vars->background_img = mlx_xpm_file_to_image(vars->mlx, \
-	vars->grass_path, &vars->img_width, &vars->img_height);
-	vars->wallimg = mlx_xpm_file_to_image(vars->mlx, vars->wall_path, \
+	"./Grass.xpm", &vars->img_width, &vars->img_height);
+	vars->wallimg = mlx_xpm_file_to_image(vars->mlx, "./Wall.xpm", \
 	&vars->img_width, &vars->img_height);
-	vars->collect = mlx_xpm_file_to_image(vars->mlx, vars->collect, \
+	vars->collect = mlx_xpm_file_to_image(vars->mlx, "./collect.xpm", \
 	&vars->img_width, &vars->img_height);
-	vars->exit = mlx_xpm_file_to_image(vars->mlx, vars->exit, \
+	vars->exit = mlx_xpm_file_to_image(vars->mlx, "./exit.xpm", \
 	&vars->img_width, &vars->img_height);
-	vars->win_img = mlx_xpm_file_to_image(vars->mlx, vars->winscreen_path, \
+	vars->win_img = mlx_xpm_file_to_image(vars->mlx, "./background.xpm", \
 	&vars->img_width, &vars->img_height);
 }
 
 int	main(int argc, char *argv[])
 {
 	t_vars	vars;
+	size_t	arglen;
 
+	arglen = ft_strlen(argv[1]);
 	if (argc != 2)
+		return (0);
+	if (argv[1][arglen - 1] != 'r' && argv[1][arglen - 2] != 'e' && \
+		argv[1][arglen - 3] != 'b')
 	{
+		ft_putendl_fd("Game can only run .ber files", 1);
 		return (0);
 	}
-	vars.grass_path = "./Grass.xpm";
-	vars.relative_path = "./Character.xpm";
-	vars.wall_path = "./Wall.xpm";
-	vars.collect = "./collect.xpm";
-	vars.exit = "./exit.xpm";
-	vars.winscreen_path = "./background.xpm";
 	vars.mlx = mlx_init();
 	mapinput(&vars, argv);
 	map_error(&vars);
@@ -83,7 +81,7 @@ int	main(int argc, char *argv[])
 	load_images(&vars);
 	put_map(&vars);
 	check_collect(&vars);
-	mlx_key_hook(vars.mlx_win, key_hook, &vars);
+	mlx_hook(vars.mlx_win, 2, 1L << 0, key_hook, &vars);
 	mlx_hook(vars.mlx_win, 17, 0, close_game, &vars);
 	mlx_loop(vars.mlx);
 }
