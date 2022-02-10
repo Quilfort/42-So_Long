@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/19 13:59:48 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/02/09 14:34:41 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/10 15:13:06 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 void	map_error(t_vars *vars)
 {
+	if (vars->mapline[0] == NULL)
+		print_error();
 	item_error(vars);
 	wall_error(vars);
 	unknown_error(vars);
@@ -37,7 +39,7 @@ void	unknown_error(t_vars *vars)
 			if (vars->mapline[f][i] != 'C' && vars->mapline[f][i] != 'P' \
 			&& vars->mapline[f][i] != 'E' \
 			&& vars->mapline[f][i] != '1' && vars->mapline[f][i] != '0')
-				print_error(vars);
+				print_error();
 			i++;
 		}
 		i = 0;
@@ -71,7 +73,7 @@ void	item_error(t_vars *vars)
 		f++;
 	}
 	if (vars->c < 1 || vars->p != 1 || vars->e == 0)
-		print_error(vars);
+		print_error();
 }
 
 void	wall_error(t_vars *vars)
@@ -90,7 +92,7 @@ void	wall_error(t_vars *vars)
 			if (vars->mapline[0][i] != '1' || vars->mapline[f][0] != '1' || \
 			vars->mapline[f][max - 1] != '1' || \
 			vars->mapline[vars->count - 1][i] != '1')
-				print_error(vars);
+				print_error();
 			i++;
 		}
 		i = 0;
@@ -98,7 +100,7 @@ void	wall_error(t_vars *vars)
 	}
 }
 
-void	print_error(t_vars *vars)
+void	print_error(void)
 {
 	char	*error;
 

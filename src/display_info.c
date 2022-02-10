@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/16 14:44:10 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/02/09 17:07:54 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/10 15:37:42 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 void	display_move(t_vars *vars)
 {
 	static int	count;
-	char		temp;
 
 	count = count + 1;
 	vars->movement = count;
@@ -34,7 +33,7 @@ void	pickup_collect(t_vars *vars)
 	vars->pickup_collect = count;
 }
 
-void	print_screen(t_vars *vars)
+void	print_steps(t_vars *vars)
 {
 	char	*print;
 

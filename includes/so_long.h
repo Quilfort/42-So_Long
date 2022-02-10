@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/13 16:44:37 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/02/09 17:25:00 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/10 15:37:49 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	map_error(t_vars *vars);
 void	wall_error(t_vars *vars);
 void	item_error(t_vars *vars);
 void	unknown_error(t_vars *vars);
-void	print_error(t_vars *vars);
+void	print_error(void);
 void	checkmap(t_vars *vars);
 int		key_hook(int keycode, t_vars *vars);
 void	move_left(int *x, int *y, t_vars *vars);
@@ -74,7 +74,7 @@ int		find_wall(t_vars *vars);
 int		check_collect(t_vars *vars);
 void	pickup_collect(t_vars *vars);
 void	display_move(t_vars *vars);
-void	print_screen(t_vars *vars);
+void	print_steps(t_vars *vars);
 int		close_game(t_vars *vars);
 void	winscreen(int *x, int *y, t_vars *vars);
 int		key_hook_exit(int keycode, t_vars *vars);

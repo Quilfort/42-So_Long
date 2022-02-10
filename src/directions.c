@@ -6,12 +6,11 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/17 13:10:40 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/02/07 13:37:02 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/10 15:39:06 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <so_long.h>
 #include "get_next_line/get_next_line.h"
@@ -26,12 +25,12 @@ void	move_left(int *x, int *y, t_vars *vars)
 	{
 		*x = *x + 63;
 		vars->hero_x = *x;
-		print_screen(vars);
+		print_steps(vars);
 	}
 	else
 	{
 		display_move(vars);
-		print_screen(vars);
+		print_steps(vars);
 	}
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->img, *x, *y);
 }
@@ -45,12 +44,12 @@ void	move_down(int *x, int *y, t_vars *vars)
 	{
 		*y = *y - 63;
 		vars->hero_y = *y;
-		print_screen(vars);
+		print_steps(vars);
 	}
 	else
 	{
 		display_move(vars);
-		print_screen(vars);
+		print_steps(vars);
 	}
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->img, *x, *y);
 }
@@ -64,12 +63,12 @@ void	move_right(int *x, int *y, t_vars *vars)
 	{
 		*x = *x - 63;
 		vars->hero_x = *x;
-		print_screen(vars);
+		print_steps(vars);
 	}
 	else
 	{
 		display_move(vars);
-		print_screen(vars);
+		print_steps(vars);
 	}
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->img, *x, *y);
 }
@@ -83,12 +82,12 @@ void	move_up(int *x, int *y, t_vars *vars)
 	{
 		*y = *y + 63;
 		vars->hero_y = *y;
-		print_screen(vars);
+		print_steps(vars);
 	}
 	else
 	{
 		display_move(vars);
-		print_screen(vars);
+		print_steps(vars);
 	}
 	mlx_put_image_to_window(vars->mlx, vars->mlx_win, vars->img, *x, *y);
 }
