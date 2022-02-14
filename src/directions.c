@@ -6,15 +6,13 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/17 13:10:40 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/02/10 15:39:06 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/14 12:22:42 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include <stdlib.h>
 #include <so_long.h>
-#include "get_next_line/get_next_line.h"
-#include "../library/libft/libft.h"
 
 void	move_left(int *x, int *y, t_vars *vars)
 {

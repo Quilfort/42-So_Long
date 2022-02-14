@@ -6,16 +6,13 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/13 16:31:45 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/02/09 15:22:16 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/14 15:42:13 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <so_long.h>
-#include "get_next_line/get_next_line.h"
-#include "../library/libft/libft.h"
 
 int	key_hook(int keycode, t_vars *vars)
 {
@@ -44,6 +41,8 @@ int	key_hook(int keycode, t_vars *vars)
 
 void	load_images(t_vars *vars)
 {
+	vars->mlx_win = mlx_new_window(vars->mlx, vars->screen_x, \
+	vars->screen_y, "Courtyard Ball");
 	vars->img = mlx_xpm_file_to_image(vars->mlx, "./Character.xpm", \
 	&vars->img_width, &vars->img_height);
 	vars->background_img = mlx_xpm_file_to_image(vars->mlx, \
@@ -63,9 +62,12 @@ int	main(int argc, char *argv[])
 	t_vars	vars;
 	size_t	arglen;
 
-	arglen = ft_strlen(argv[1]);
 	if (argc != 2)
+	{
+		ft_putendl_fd("Code Arguments: Take two arguments", 1);
 		return (0);
+	}
+	arglen = ft_strlen(argv[1]);
 	if (argv[1][arglen - 1] != 'r' && argv[1][arglen - 2] != 'e' && \
 		argv[1][arglen - 3] != 'b')
 	{
@@ -76,8 +78,6 @@ int	main(int argc, char *argv[])
 	mapinput(&vars, argv);
 	map_error(&vars);
 	checkmap(&vars);
-	vars.mlx_win = mlx_new_window(vars.mlx, vars.screen_x, \
-	vars.screen_y, "Courtyard Ball");
 	load_images(&vars);
 	put_map(&vars);
 	check_collect(&vars);

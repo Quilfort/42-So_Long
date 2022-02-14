@@ -6,12 +6,11 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/16 12:20:08 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/02/09 17:08:14 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/14 12:22:33 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-#include "../library/libft/libft.h"
 #include <mlx.h>
 
 void	checkmap(t_vars *vars)

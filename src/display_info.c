@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   display_info.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/12/16 14:44:10 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/02/10 15:37:42 by qfrederi      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   display_info.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qfrederi <qfrederi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/16 14:44:10 by qfrederi          #+#    #+#             */
+/*   Updated: 2022/02/14 15:53:50 by qfrederi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-#include "../library/libft/libft.h"
 #include <mlx.h>
 
 void	display_move(t_vars *vars)
@@ -38,6 +37,11 @@ void	print_steps(t_vars *vars)
 	char	*print;
 
 	print = ft_itoa(vars->movement);
+	if (!print)
+	{
+		ft_putendl_fd("Can't Display Steps", 1);
+		exit (0);
+	}
 	mlx_string_put(vars->mlx, vars->mlx_win, vars->screen_x - 63, 63, \
 	0xffffff, print);
 	free(print);

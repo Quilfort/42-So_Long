@@ -6,14 +6,11 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/13 17:07:22 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/02/10 15:17:34 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/14 15:58:48 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line/get_next_line.h"
 #include "../includes/so_long.h"
-#include "../library/libft/libft.h"
-#include <stdio.h>
 #include <mlx.h>
 
 void	*mapinput(t_vars *vars, char *argv[])
@@ -25,9 +22,10 @@ void	*mapinput(t_vars *vars, char *argv[])
 
 	map = ft_calloc(1, 1);
 	if (map == NULL)
-		return (NULL);
+		print_error();
 	fd = open(argv[1], O_RDONLY);
-	fd_check(fd);
+	if (!fd_check(fd))
+		print_error();
 	while (map)
 	{
 		temp = get_next_line(fd);
@@ -38,9 +36,7 @@ void	*mapinput(t_vars *vars, char *argv[])
 		free(newmap);
 		free(temp);
 	}
-	vars->count = count_line(vars, map);
-	vars->mapline = ft_split(map, '\n');
-	free(map);
+	split_map(vars, map);
 	close(fd);
 	return (0);
 }
@@ -49,8 +45,34 @@ int	fd_check(int fd)
 {
 	if (fd == -1)
 		return (0);
-	else
-		return (1);
+	return (1);
+}
+
+void	split_map(t_vars *vars, char *map)
+{
+	int	i;
+	int	length;
+
+	i = 0;
+	length = ft_strlen(map);
+	while (map[i] != '\0')
+	{
+		if (map[length - 1] == '\n')
+			print_error();
+		if (map[0] == '\n')
+			print_error();
+		if (map[i] == '\n')
+		{
+			if (map[i + 1] == '\n')
+				print_error();
+		}
+		i++;
+	}
+	vars->count = count_line(vars, map);
+	vars->mapline = ft_split(map, '\n');
+	if (!vars->mapline)
+		print_error();
+	free(map);
 }
 
 int	count_line(t_vars *vars, char *map)

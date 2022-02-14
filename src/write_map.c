@@ -6,14 +6,11 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/20 15:26:29 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/01/20 15:45:38 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/14 12:22:30 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line/get_next_line.h"
 #include "../includes/so_long.h"
-#include "../library/libft/libft.h"
-#include <stdio.h>
 #include <mlx.h>
 
 void	write_wall(t_vars *vars, int *x, int *y)
