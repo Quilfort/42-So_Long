@@ -6,14 +6,13 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/16 12:20:08 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/02/14 12:22:33 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/16 12:51:49 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
-#include <mlx.h>
+#include <so_long.h>
 
-void	checkmap(t_vars *vars)
+void	check_map(t_vars *vars)
 {
 	int	f;
 	int	i;
@@ -33,7 +32,15 @@ void	checkmap(t_vars *vars)
 	vars->screen_y = f * 63;
 }
 
-int	checkwall(t_vars *vars)
+static int	find_wall(t_vars *vars)
+{
+	if (vars->wall_x == vars->hero_x && vars->wall_y == vars->hero_y)
+		return (1);
+	else
+		return (0);
+}
+
+int	check_wall(t_vars *vars)
 {
 	int	f;
 	int	i;
@@ -62,15 +69,7 @@ int	checkwall(t_vars *vars)
 	return (0);
 }
 
-int	find_wall(t_vars *vars)
-{
-	if (vars->wall_x == vars->hero_x && vars->wall_y == vars->hero_y)
-		return (1);
-	else
-		return (0);
-}
-
-int	check_collect(t_vars *vars)
+void	check_collect(t_vars *vars)
 {
 	int	f;
 	int	i;
@@ -91,5 +90,4 @@ int	check_collect(t_vars *vars)
 		i = 0;
 		f++;
 	}
-	return (0);
 }

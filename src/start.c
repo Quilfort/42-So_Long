@@ -6,15 +6,13 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/13 16:31:45 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/02/14 15:42:13 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/16 15:18:37 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <stdlib.h>
 #include <so_long.h>
 
-int	key_hook(int keycode, t_vars *vars)
+static int	key_hook(int keycode, t_vars *vars)
 {
 	static int	x;
 	static int	y;
@@ -34,12 +32,12 @@ int	key_hook(int keycode, t_vars *vars)
 		move_right(&x, &y, vars);
 	if (keycode == 13)
 		move_up(&x, &y, vars);
-	winscreen(&x, &y, vars);
+	win_screen(&x, &y, vars);
 	key_hook_exit(keycode, vars);
 	return (0);
 }
 
-void	load_images(t_vars *vars)
+static void	load_images(t_vars *vars)
 {
 	vars->mlx_win = mlx_new_window(vars->mlx, vars->screen_x, \
 	vars->screen_y, "Courtyard Ball");
@@ -77,7 +75,7 @@ int	main(int argc, char *argv[])
 	vars.mlx = mlx_init();
 	mapinput(&vars, argv);
 	map_error(&vars);
-	checkmap(&vars);
+	check_map(&vars);
 	load_images(&vars);
 	put_map(&vars);
 	check_collect(&vars);

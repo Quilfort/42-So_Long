@@ -6,7 +6,7 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/13 16:44:37 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/02/14 15:12:09 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/16 15:18:31 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "../src/get_next_line/get_next_line.h"
 # include "../library/libft/libft.h"
+# include "../library/mlx/mlx.h"
+# include <stdlib.h>
 
 typedef struct s_vars {
 	void	*mlx;
@@ -51,33 +53,21 @@ typedef struct s_vars {
 	int		img_height;
 }				t_vars;	
 
-// start.c
-void	load_images(t_vars *vars);
-int		key_hook(int keycode, t_vars *vars);
-
 // use_map.c
-void	*mapinput(t_vars *vars, char *argv[]);
-int		fd_check(int fd);
-void	split_map(t_vars *vars, char *map);
-int		count_line(t_vars *vars, char *map);
-void	put_map(t_vars *vars);
+void	mapinput(t_vars *vars, char *argv[]);
 
 // error_map.c
 void	map_error(t_vars *vars);
-void	wall_error(t_vars *vars);
-void	item_error(t_vars *vars);
-void	unknown_error(t_vars *vars);
 void	print_error(void);
 
 // check_map.c
-void	checkmap(t_vars *vars);
-int		checkwall(t_vars *vars);
-int		find_wall(t_vars *vars);
-int		check_collect(t_vars *vars);
+void	check_map(t_vars *vars);
+int		check_wall(t_vars *vars);
+void	check_collect(t_vars *vars);
 
 // write_map.c
-void	write_wall(t_vars *vars, int *x, int *y);
-void	write_empty(t_vars *vars, int *x, int *y);
+void	put_map(t_vars *vars);
+void	write_wall_empty(t_vars *vars, int *x, int *y);
 void	write_collect(t_vars *vars, int *x, int *y);
 void	write_player(t_vars *vars, int *x, int *y);
 void	write_exit(t_vars *vars, int *x, int *y);
@@ -95,7 +85,7 @@ void	print_steps(t_vars *vars);
 
 // exit.c
 int		close_game(t_vars *vars);
-void	winscreen(int *x, int *y, t_vars *vars);
+void	win_screen(int *x, int *y, t_vars *vars);
 int		key_hook_exit(int keycode, t_vars *vars);
 
 #endif

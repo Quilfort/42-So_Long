@@ -6,26 +6,13 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/19 13:59:48 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/02/10 15:13:06 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/16 12:43:03 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line/get_next_line.h"
-#include "../includes/so_long.h"
-#include "../library/libft/libft.h"
-#include <stdio.h>
-#include <mlx.h>
+#include <so_long.h>
 
-void	map_error(t_vars *vars)
-{
-	if (vars->mapline[0] == NULL)
-		print_error();
-	item_error(vars);
-	wall_error(vars);
-	unknown_error(vars);
-}
-
-void	unknown_error(t_vars *vars)
+static void	unknown_error(t_vars *vars)
 {
 	int	f;
 	int	i;
@@ -47,7 +34,7 @@ void	unknown_error(t_vars *vars)
 	}
 }
 
-void	item_error(t_vars *vars)
+static void	item_error(t_vars *vars)
 {
 	int	f;
 	int	i;
@@ -76,7 +63,7 @@ void	item_error(t_vars *vars)
 		print_error();
 }
 
-void	wall_error(t_vars *vars)
+static void	wall_error(t_vars *vars)
 {
 	int	f;
 	int	i;
@@ -107,4 +94,13 @@ void	print_error(void)
 	error = "Code 42: Map Error";
 	ft_putstr_fd(error, 1);
 	exit(0);
+}
+
+void	map_error(t_vars *vars)
+{
+	if (vars->mapline[0] == NULL)
+		print_error();
+	item_error(vars);
+	wall_error(vars);
+	unknown_error(vars);
 }

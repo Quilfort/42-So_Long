@@ -6,24 +6,19 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/20 15:26:29 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/02/14 12:22:30 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/16 15:13:45 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
-#include <mlx.h>
+#include <so_long.h>
 
-void	write_wall(t_vars *vars, int *x, int *y)
+void	write_wall_empty(t_vars *vars, int *x, int *y)
 {
 	if (vars->mapline[vars->f_map][vars->i_map] == '1')
 	{
 		mlx_put_image_to_window(vars->mlx, vars->mlx_win, \
 		vars->wallimg, *x, *y);
 	}
-}
-
-void	write_empty(t_vars *vars, int *x, int *y)
-{
 	if (vars->mapline[vars->f_map][vars->i_map] == '0')
 	{
 		mlx_put_image_to_window(vars->mlx, vars->mlx_win, \
@@ -68,5 +63,32 @@ void	write_exit(t_vars *vars, int *x, int *y)
 		vars->exit, *x, *y);
 		vars->exit_x = *x;
 		vars->exit_y = *y;
+	}
+}
+
+void	put_map(t_vars *vars)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	vars->i_map = 0;
+	vars->f_map = 0;
+	while (vars->f_map < vars->count)
+	{
+		while (vars->mapline[vars->f_map][vars->i_map] != '\0')
+		{
+			write_wall_empty(vars, &x, &y);
+			write_collect(vars, &x, &y);
+			write_player(vars, &x, &y);
+			write_exit(vars, &x, &y);
+			x = x + 63;
+			vars->i_map++;
+		}
+		vars->i_map = 0;
+		x = 0;
+		y = y + 63;
+		vars->f_map++;
 	}
 }

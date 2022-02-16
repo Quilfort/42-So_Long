@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   display_info.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qfrederi <qfrederi@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 14:44:10 by qfrederi          #+#    #+#             */
-/*   Updated: 2022/02/14 15:53:50 by qfrederi         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   display_info.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2021/12/16 14:44:10 by qfrederi      #+#    #+#                 */
+/*   Updated: 2022/02/16 12:42:45 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
-#include <mlx.h>
+#include <so_long.h>
 
 void	display_move(t_vars *vars)
 {

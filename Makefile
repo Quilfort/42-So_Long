@@ -3,7 +3,7 @@ LIBFT_DIR = ./library/libft
 LIBFT = $(LIBFT_DIR)/libft.a
 MLX_DIR = ./library/mlx
 MLX_LIB = $(MLX_DIR)/libmlx.dylib
-FLAGS = -Wall -Werror -Wextra 
+FLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 LFLAGS = -framework OpenGL -framework AppKit
 INC = -I ./includes
 SRC =   ./src/get_next_line/get_next_line.c \
