@@ -6,16 +6,16 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/13 16:44:37 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/02/16 15:18:31 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/17 11:27:21 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../src/get_next_line/get_next_line.h"
-# include "../library/libft/libft.h"
-# include "../library/mlx/mlx.h"
+# include <get_next_line.h>
+# include <libft.h>
+# include <mlx.h>
 # include <stdlib.h>
 
 typedef struct s_vars {
@@ -67,10 +67,6 @@ void	check_collect(t_vars *vars);
 
 // write_map.c
 void	put_map(t_vars *vars);
-void	write_wall_empty(t_vars *vars, int *x, int *y);
-void	write_collect(t_vars *vars, int *x, int *y);
-void	write_player(t_vars *vars, int *x, int *y);
-void	write_exit(t_vars *vars, int *x, int *y);
 
 // directions.c
 void	move_left(int *x, int *y, t_vars *vars);

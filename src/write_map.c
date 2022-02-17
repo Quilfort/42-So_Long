@@ -6,13 +6,13 @@
 /*   By: qfrederi <qfrederi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/20 15:26:29 by qfrederi      #+#    #+#                 */
-/*   Updated: 2022/02/16 15:13:45 by qfrederi      ########   odam.nl         */
+/*   Updated: 2022/02/17 11:11:38 by qfrederi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-void	write_wall_empty(t_vars *vars, int *x, int *y)
+static void	write_wall_empty(t_vars *vars, int *x, int *y)
 {
 	if (vars->mapline[vars->f_map][vars->i_map] == '1')
 	{
@@ -26,7 +26,7 @@ void	write_wall_empty(t_vars *vars, int *x, int *y)
 	}
 }
 
-void	write_collect(t_vars *vars, int *x, int *y)
+static void	write_collect(t_vars *vars, int *x, int *y)
 {
 	if (vars->mapline[vars->f_map][vars->i_map] == 'C')
 	{
@@ -43,7 +43,7 @@ void	write_collect(t_vars *vars, int *x, int *y)
 	}
 }
 
-void	write_player(t_vars *vars, int *x, int *y)
+static void	write_player(t_vars *vars, int *x, int *y)
 {
 	if (vars->mapline[vars->f_map][vars->i_map] == 'P')
 	{
@@ -55,7 +55,7 @@ void	write_player(t_vars *vars, int *x, int *y)
 	}
 }
 
-void	write_exit(t_vars *vars, int *x, int *y)
+static void	write_exit(t_vars *vars, int *x, int *y)
 {
 	if (vars->mapline[vars->f_map][vars->i_map] == 'E')
 	{
